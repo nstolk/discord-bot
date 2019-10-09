@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = {
+const config = {
     prefix: process.env.prefix,
     owner: process.env.owner
 }
@@ -24,17 +24,17 @@ client.once('disconnect', () => {
 
 client.on('message', async message => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(client.prefix)) return;
+    if (!message.content.startsWith(config.prefix)) return;
 
     const serverQueue = queue.get(message.guild.id);
 
-    if (message.content.startsWith(`${client.prefix}play`)) {
+    if (message.content.startsWith(`${config.prefix}play`)) {
         execute(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${client.prefix}skip`)) {
+    } else if (message.content.startsWith(`${config.prefix}skip`)) {
         skip(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${client.prefix}stop`)) {
+    } else if (message.content.startsWith(`${config.prefix}stop`)) {
         stop(message, serverQueue);
         return;
     } else {
