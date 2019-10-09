@@ -1,11 +1,13 @@
-const Discord = require('discord.js');
-const {
-    prefix,
-    token,
-} = require('./config.json');
-const ytdl = require('ytdl-core');
+import { Client } from 'discord.js';
 
-const client = new Discord.Client();
+const client = {
+    prefix: process.env.prefix,
+    owner: process.env.owner
+}
+
+import ytdl, { getInfo } from 'ytdl-core';
+
+const client = new Client();
 
 const queue = new Map();
 
@@ -23,17 +25,17 @@ client.once('disconnect', () => {
 
 client.on('message', async message => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(client.prefix)) return;
 
     const serverQueue = queue.get(message.guild.id);
 
-    if (message.content.startsWith(`${prefix}play`)) {
+    if (message.content.startsWith(`${client.prefix}play`)) {
         execute(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${prefix}skip`)) {
+    } else if (message.content.startsWith(`${client.prefix}skip`)) {
         skip(message, serverQueue);
         return;
-    } else if (message.content.startsWith(`${prefix}stop`)) {
+    } else if (message.content.startsWith(`${client.prefix}stop`)) {
         stop(message, serverQueue);
         return;
     } else {
@@ -51,7 +53,7 @@ async function execute(message, serverQueue) {
         return message.channel.send('I need the permissions to join and speak in your voice channel!');
     }
 
-    const songInfo = await ytdl.getInfo(args[1]);
+    const songInfo = await getInfo(args[1]);
     const song = {
         title: songInfo.title,
         url: songInfo.video_url,
@@ -121,4 +123,4 @@ function play(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 }
 
-client.login(token);
+client.login(process.env.token);
