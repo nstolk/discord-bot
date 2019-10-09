@@ -1,13 +1,12 @@
-import { Client } from 'discord.js';
-
+const Discord = require('discord.js');
 const client = {
     prefix: process.env.prefix,
     owner: process.env.owner
 }
 
-import ytdl, { getInfo } from 'ytdl-core';
+const ytdl = require('ytdl-core');
 
-const client = new Client();
+const client = new Discord.Client();
 
 const queue = new Map();
 
@@ -53,7 +52,7 @@ async function execute(message, serverQueue) {
         return message.channel.send('I need the permissions to join and speak in your voice channel!');
     }
 
-    const songInfo = await getInfo(args[1]);
+    const songInfo = await ytdl.getInfo(args[1]);
     const song = {
         title: songInfo.title,
         url: songInfo.video_url,
