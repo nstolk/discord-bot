@@ -14,6 +14,6 @@
     "discord.js": "^11.6.4",
     "ffmpeg-static": "^2.7.0",
     "node-opus": "^0.3.3",
-    "ytdl-core": "^1.0.9"
+    "ytdl-core": "^2.1.1"
   }
 }
