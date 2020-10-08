@@ -12,9 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
-    "@discordjs/uws": "^11.149.1",
-    "discord.js": "^11.6.4",
-    "ffmpeg-static": "^2.7.0",
+    "discord.js": "^12.3.1",
+    "ffmpeg-static": "^4.2.7",
     "ytdl-core": "^3.3.0"
   }
 }
