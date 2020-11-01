@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "^0.3.3",
     "discord.js": "^11.6.4",
     "ffmpeg-static": "^2.7.0",
-    "ytdl-core": "^3.4.2"
+    "ytdl-core": "^4.0.2"
   }
 }
